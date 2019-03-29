@@ -2,12 +2,14 @@
 
 This repository demonstrates two issues, one in relation to the `RUNFILES_DIR` environment variable (https://github.com/bazelbuild/bazel/pull/7774) as well as one issue specific to `rules_nodejs` in regards to how the `RUNFILES` env var is set for the node module resolution.
 
+## Issue 1
 For the first issue just run:
 ```bash
 bazel run //app # Shows: ERROR: cannot find @bazel_tools//tools/bash/runfiles:runfiles.bash
 bazel run //app:app2 # This sets the RUNFILES_DIR env var explictely and works
 ```
 
+## Issue 2
 The second issue needs the following commands to be run in this exact order to reproduce:
 
 ```bash
