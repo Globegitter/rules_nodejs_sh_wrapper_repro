@@ -13,7 +13,7 @@ The second issue needs the following commands to be run in this exact order to r
 ```bash
 bazel clean # To make sure no runfiles directories exist
 bazel run //app:app2 # Everything works as expected with the wrapper shell script
-bazel build //app # This creates the runfiles directories of the nodejs_binary directly
+bazel build //app:app.binary # This creates the runfiles directories of the nodejs_binary directly
 bazel run @nodejs//:yarn -- add five # Adds a new node module dependency that is not included in the runfiles directory above
 sed -i -E 's/\/\///g' app/app.js && sed -i -E 's/# "/"/g' app/BUILD.bazel # Uncomments code that makes use of the added module
 bazel run //app:app2 # This will now fail
