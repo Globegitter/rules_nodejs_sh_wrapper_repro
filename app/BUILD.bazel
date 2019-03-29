@@ -1,0 +1,27 @@
+load("@build_bazel_rules_nodejs//:defs.bzl", "nodejs_binary")
+load("@com_github_atlassian_bazel_tools//:multirun/def.bzl", "command")
+
+
+
+nodejs_binary(
+    name = "app.binary",  # dev server
+    data = [
+        "app.js",
+        "@npm//date-fns",
+        # "@npm//five",
+    ],
+    entry_point = "__main__/app/app.js",
+)
+
+command(
+    name = "app",
+    command = ":app.binary",
+)
+
+command(
+    name = "app2",
+    command = ":app.binary",
+    environment = {
+        "RUNFILES_DIR": "..",
+    },
+)

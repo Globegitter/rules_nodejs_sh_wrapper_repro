@@ -4,7 +4,7 @@ This repository demonstrates two issues, one in relation to the `RUNFILES_DIR` e
 
 For the first issue just run:
 ```bash
-bazel run //app # Should show: ERROR: cannot find @bazel_tools//tools/bash/runfiles:runfiles.bash
+bazel run //app # Shows: ERROR: cannot find @bazel_tools//tools/bash/runfiles:runfiles.bash
 bazel run //app:app2 # This sets the RUNFILES_DIR env var explictely and works
 ```
 
@@ -15,7 +15,7 @@ bazel clean # To make sure no runfiles directories exist
 bazel run //app:app2 # Everything works as expected with the wrapper shell script
 bazel build //app # This creates the runfiles directories of the nodejs_binary directly
 bazel run @nodejs//:yarn -- add five # Adds a new node module dependency that is not included in the runfiles directory above
-sed -iE 's/\/\///g' app/app.js && sed -i -E 's/# "/"/g' app/BUILD.bazel # Uncomments code that makes use of the added module
+sed -i -E 's/\/\///g' app/app.js && sed -i -E 's/# "/"/g' app/BUILD.bazel # Uncomments code that makes use of the added module
 bazel run //app:app2 # This will now fail
 ```
 
